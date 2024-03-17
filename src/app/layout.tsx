@@ -3,6 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 
 import { Inter } from 'next/font/google';
+import NavBar from '@/components/NavBar/NavBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,6 +26,7 @@ const RootLayout: React.FC<RootLayoutProps> = async ({ children }) => {
           enableSystem
           disableTransitionOnChange
         >
+          <NavBar />
           {children}
         </ThemeProvider>
       </body>
