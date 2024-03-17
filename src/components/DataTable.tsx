@@ -10,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import StatusBadge from './StatusBadge';
 
 interface IProps {
   tickets: Ticket[];
@@ -17,14 +18,13 @@ interface IProps {
 
 const DataTable = ({ tickets }: IProps) => {
   return (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
+    <Table className='mx-auto mt-20 max-w-screen-xl gap-8 rounded-md border px-4 sm:px-6 lg:px-8'>
       <TableHeader>
         <TableRow>
           <TableHead>Title</TableHead>
           <TableHead>Status</TableHead>
           <TableHead>Priority</TableHead>
-          <TableHead>CreatedAt</TableHead>
+          <TableHead className='pr-20 text-right'>CreatedAt</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -32,9 +32,11 @@ const DataTable = ({ tickets }: IProps) => {
           ? tickets.map(({ id, title, status, priority, createdAt }) => (
               <TableRow key={id}>
                 <TableCell className='font-medium'>{title}</TableCell>
-                <TableCell>{status}</TableCell>
-                <TableCell>{priority}</TableCell>
                 <TableCell>
+                  <StatusBadge status={status} />
+                </TableCell>
+                <TableCell>{priority}</TableCell>
+                <TableCell className='pr-10 text-right'>
                   {createdAt?.toLocaleDateString('en-US', {
                     year: '2-digit',
                     month: '2-digit',
