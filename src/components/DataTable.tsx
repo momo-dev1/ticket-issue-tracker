@@ -3,14 +3,13 @@ import { Ticket } from '@prisma/client';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
 import StatusBadge from './StatusBadge';
+import PariorityFlames from './PariorityFlames';
 
 interface IProps {
   tickets: Ticket[];
@@ -35,7 +34,9 @@ const DataTable = ({ tickets }: IProps) => {
                 <TableCell>
                   <StatusBadge status={status} />
                 </TableCell>
-                <TableCell>{priority}</TableCell>
+                <TableCell>
+                  <PariorityFlames pariority={priority} />
+                </TableCell>
                 <TableCell className='pr-10 text-right'>
                   {createdAt?.toLocaleDateString('en-US', {
                     year: '2-digit',
