@@ -17,7 +17,7 @@ interface IProps {
 
 const DataTable = ({ tickets }: IProps) => {
   return (
-    <Table className='mx-auto mt-20 max-w-screen-xl gap-8 rounded-md border px-4 sm:px-6 lg:px-8'>
+    <Table className='mx-auto mt-24 mb-10 max-w-screen-xl gap-8 rounded-md border px-4 sm:px-6 lg:px-8'>
       <TableHeader>
         <TableRow>
           <TableHead>Title</TableHead>
@@ -34,7 +34,7 @@ const DataTable = ({ tickets }: IProps) => {
                 <TableCell>
                   <StatusBadge status={status} />
                 </TableCell>
-                <TableCell>
+              <TableCell>
                   <PariorityFlames pariority={priority} />
                 </TableCell>
                 <TableCell className='pr-10 text-right'>
