@@ -1,6 +1,5 @@
-
 const Loading = () => {
-  return <></>;
-};
+  return <></>
+}
 
-export default Loading;
+export default Loading

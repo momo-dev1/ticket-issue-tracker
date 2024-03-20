@@ -1,8 +1,8 @@
-import { Status } from '@prisma/client';
-import { Badge } from './ui/badge';
+import { Status } from '@prisma/client'
+import { Badge } from './ui/badge'
 
 interface IProps {
-  status: Status;
+  status: Status
 }
 
 const StatusMap: Record<
@@ -12,7 +12,7 @@ const StatusMap: Record<
   OPEN: { label: 'open', color: 'bg-red-500' },
   STARTED: { label: 'started', color: 'bg-blue-500' },
   CLOSED: { label: 'closed', color: 'bg-green-500' },
-};
+}
 
 const StatusBadge = ({ status }: IProps) => {
   return (
@@ -21,7 +21,7 @@ const StatusBadge = ({ status }: IProps) => {
     >
       {StatusMap[status].label}
     </Badge>
-  );
-};
+  )
+}
 
-export default StatusBadge;
+export default StatusBadge

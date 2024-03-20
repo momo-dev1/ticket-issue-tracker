@@ -1,19 +1,19 @@
-import { ThemeProvider } from '@/components/theme-provider';
-import './globals.css';
-import type { Metadata } from 'next';
+import { ThemeProvider } from '@/components/theme-provider'
+import './globals.css'
+import type { Metadata } from 'next'
 
-import { Inter } from 'next/font/google';
-import NavBar from '@/components/NavBar/NavBar';
+import { Inter } from 'next/font/google'
+import NavBar from '@/components/navbar/NavBar'
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: '',
   description: '',
-};
+}
 
 interface RootLayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 const RootLayout: React.FC<RootLayoutProps> = async ({ children }) => {
@@ -31,7 +31,7 @@ const RootLayout: React.FC<RootLayoutProps> = async ({ children }) => {
         </ThemeProvider>
       </body>
     </html>
-  );
-};
+  )
+}
 
-export default RootLayout;
+export default RootLayout

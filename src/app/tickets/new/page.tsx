@@ -1,11 +1,13 @@
 import dynamic from 'next/dynamic'
 
 const TicketForm = dynamic(() => import('@/components/TicketForm'), {
-  ssr: false
+  ssr: false,
 })
 const NewTicket = () => {
   return (
-    <><TicketForm/></>
+    <>
+      <TicketForm />
+    </>
   )
 }
 
