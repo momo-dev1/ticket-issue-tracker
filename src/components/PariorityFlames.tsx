@@ -13,7 +13,7 @@ const PariorityMap: Record<Priority, { label: string; level: 1 | 2 | 3 }> = {
 
 const PariorityFlames = ({ pariority }: IProps) => {
   return (
-    <div className='flex justify-center'>
+    <div className='flex'>
       <Flame
         className={`${PariorityMap[pariority].level >= 1 ? 'text-red-500' : 'text-muted'} `}
       />

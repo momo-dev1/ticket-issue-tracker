@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 export const TicketSchema = z.object({
+  id: z.string().optional(),
   title: z
     .string()
     .min(8, { message: 'Title is too short' })
