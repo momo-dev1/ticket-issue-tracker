@@ -30,14 +30,6 @@ const NavBar = () => {
                 Home
               </Link>
             </li>
-            <li>
-              <Link
-                className='text-white transition hover:text-teal-500/75'
-                href='/tickets/new'
-              >
-                Create Ticket
-              </Link>
-            </li>
           </ul>
         </nav>
 
