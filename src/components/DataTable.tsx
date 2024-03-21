@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/table'
 import StatusBadge from './StatusBadge'
 import PariorityFlames from './PariorityFlames'
+import Link from 'next/link'
 
 interface IProps {
   tickets: Ticket[]
@@ -17,7 +18,7 @@ interface IProps {
 
 const DataTable = ({ tickets }: IProps) => {
   return (
-    <Table className='mx-auto mb-10 mt-24 max-w-screen-xl gap-8 rounded-md border px-4 sm:px-6 lg:px-8'>
+    <Table className='mx-auto mt-6  max-w-screen-xl gap-8 rounded-md border px-4 sm:px-6 md:mx-auto lg:px-8'>
       <TableHeader>
         <TableRow>
           <TableHead>Title</TableHead>
@@ -30,12 +31,18 @@ const DataTable = ({ tickets }: IProps) => {
         {tickets
           ? tickets.map(({ id, title, status, priority, createdAt }) => (
               <TableRow key={id}>
-                <TableCell className='font-medium'>{title}</TableCell>
-                <TableCell>
-                  <StatusBadge status={status} />
+                <TableCell className='font-medium'>
+                  <Link href={`/tickets/details/${id}`}>{title}</Link>
                 </TableCell>
                 <TableCell>
-                  <PariorityFlames pariority={priority} />
+                  <div className='flex items-center justify-center'>
+                    <StatusBadge status={status} />
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className='flex items-center justify-center'>
+                    <PariorityFlames pariority={priority} />
+                  </div>
                 </TableCell>
                 <TableCell className='pr-10 text-right'>
                   {createdAt?.toLocaleDateString('en-US', {

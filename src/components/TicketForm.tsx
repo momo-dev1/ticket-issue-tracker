@@ -26,11 +26,13 @@ import { Button } from './ui/button'
 import { customFetch } from '@/utils/axiosInstance'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import axios from 'axios'
 
 type TicketFormData = z.infer<typeof TicketSchema>
 
-const TicketForm = () => {
+interface IProps {
+  ticket?: TicketFormData
+}
+const TicketForm = ({ ticket }: IProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
   const router = useRouter()
@@ -43,7 +45,12 @@ const TicketForm = () => {
     try {
       setIsSubmitting(true)
       setError('')
-      await customFetch.post('/tickets', data)
+      if (ticket) {
+        await customFetch.patch(`/tickets/${ticket.id}`, data)
+      } else {
+        await customFetch.post('/tickets', data)
+      }
+
       setIsSubmitting(false)
       router.push('/')
       router.refresh()
@@ -54,7 +61,7 @@ const TicketForm = () => {
   }
 
   return (
-    <section className=' mx-3 my-24 max-w-screen-xl rounded-md  border p-10 md:mx-auto'>
+    <section className=' mx-3 max-w-screen-xl rounded-md border p-10 md:mx-auto'>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
           <FormField
@@ -64,7 +71,11 @@ const TicketForm = () => {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input placeholder='Example asdasd' {...field} />
+                  <Input
+                    placeholder='Example asdasd'
+                    defaultValue={ticket?.title}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -73,6 +84,7 @@ const TicketForm = () => {
 
           <Controller
             name='description'
+            defaultValue={ticket?.description}
             control={form.control}
             render={({ field }) => (
               <SimpleMDE placeholder='Description' {...field} />
@@ -83,6 +95,7 @@ const TicketForm = () => {
             <FormField
               control={form.control}
               name='status'
+              defaultValue={ticket?.status}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Status</FormLabel>
@@ -108,6 +121,7 @@ const TicketForm = () => {
             <FormField
               control={form.control}
               name='priority'
+              defaultValue={ticket?.priority}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Priority</FormLabel>
@@ -133,7 +147,7 @@ const TicketForm = () => {
           </div>
 
           <Button type='submit' disabled={isSubmitting}>
-            Submit
+            {ticket ? 'Update ticket' : 'Create ticket'}
           </Button>
         </form>
       </Form>
