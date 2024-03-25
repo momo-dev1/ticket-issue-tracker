@@ -7,7 +7,7 @@ const NavBar = () => {
     <header className='fixed left-0 top-0 z-50 w-full bg-white shadow-md dark:bg-[#101929]'>
       <div className='mx-auto flex h-20 max-w-screen-xl items-center justify-between gap-8 px-4 sm:px-6 lg:px-8'>
         <nav aria-label='Global' className='flex items-center gap-6'>
-          <Link href='/' className='block text-white'>
+          <Link href='/' className='block dark:text-white'>
             <span className='sr-only'>Home</span>
             <svg
               className='h-8'
@@ -24,7 +24,7 @@ const NavBar = () => {
           <ul className='hidden items-center gap-4 text-sm md:flex'>
             <li>
               <Link
-                className='text-white transition hover:text-teal-500/75'
+                className='font-semibold transition hover:text-teal-500/75 dark:text-white'
                 href='/'
               >
                 Home
