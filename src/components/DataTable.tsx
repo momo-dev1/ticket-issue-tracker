@@ -22,8 +22,8 @@ const DataTable = ({ tickets }: IProps) => {
       <TableHeader>
         <TableRow>
           <TableHead>Title</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Priority</TableHead>
+          <TableHead className='text-center'>Status</TableHead>
+          <TableHead className='text-center'>Priority</TableHead>
           <TableHead className='pr-20 text-right'>CreatedAt</TableHead>
         </TableRow>
       </TableHeader>
@@ -31,11 +31,11 @@ const DataTable = ({ tickets }: IProps) => {
         {tickets
           ? tickets.map(({ id, title, status, priority, createdAt }) => (
               <TableRow key={id}>
-                <TableCell className='font-medium'>
+                <TableCell className=' font-medium'>
                   <Link href={`/tickets/details/${id}`}>{title}</Link>
                 </TableCell>
                 <TableCell>
-                  <div className='flex items-center justify-center'>
+                  <div className='flex items-center justify-center '>
                     <StatusBadge status={status} />
                   </div>
                 </TableCell>
