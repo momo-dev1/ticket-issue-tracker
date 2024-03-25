@@ -8,9 +8,10 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import PariorityFlames from '@/components/PariorityFlames'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import StatusBadge from '@/components/StatusBadge'
 import Link from 'next/link'
+import Markdown from 'react-markdown'
 
 interface IProps {
   params: {
@@ -44,8 +45,8 @@ const TicketDetails = async ({ params: { id } }: IProps) => {
           </p>
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <p>{ticket.description}</p>
+      <CardContent className='prose dark:prose-invert'>
+        <Markdown>{ticket.description}</Markdown>
       </CardContent>
       <CardFooter>
         <div className='flex w-full items-center justify-between'>
