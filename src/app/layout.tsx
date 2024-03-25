@@ -18,7 +18,7 @@ interface RootLayoutProps {
 
 const RootLayout: React.FC<RootLayoutProps> = async ({ children }) => {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider
           attribute='class'
