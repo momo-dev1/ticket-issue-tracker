@@ -8,8 +8,8 @@ import NavBar from '@/components/navbar/NavBar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: '',
-  description: '',
+  title: 'Ticket issue tracker',
+  description: 'ticket issue tracker',
 }
 
 interface RootLayoutProps {
