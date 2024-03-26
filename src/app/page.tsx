@@ -3,16 +3,22 @@ import Pagination from '@/components/Pagination'
 import StatusFilter from '@/components/StatusFilter'
 import { Button } from '@/components/ui/button'
 import prisma from '@/lib/prismadb'
-import { Status } from '@prisma/client'
+import { Status, Ticket } from '@prisma/client'
 import Link from 'next/link'
 
-interface IProps {
+export interface ISearchParamsProps {
   status: Status
   page: string
+  orderBy: keyof Ticket
 }
-const Ticket = async ({ searchParams }: { searchParams: IProps }) => {
+const Ticket = async ({
+  searchParams,
+}: {
+  searchParams: ISearchParamsProps
+}) => {
   const pageSize = 5
   const page = parseInt(searchParams.page) || 1
+  const orderBy = searchParams.orderBy ? searchParams.orderBy : 'createdAt'
   const statuses = Object.values(Status)
   const status = statuses.includes(searchParams.status)
     ? searchParams.status
@@ -31,7 +37,7 @@ const Ticket = async ({ searchParams }: { searchParams: IProps }) => {
 
   const tickets = await prisma.ticket.findMany({
     where,
-    orderBy: [{ createdAt: 'desc' }],
+    orderBy: { [orderBy]: 'desc'  },
     take: pageSize,
     skip: (page - 1) * pageSize,
   })
@@ -44,7 +50,7 @@ const Ticket = async ({ searchParams }: { searchParams: IProps }) => {
         <StatusFilter />
       </div>
 
-      <DataTable tickets={tickets} />
+      <DataTable tickets={tickets} searchParams={searchParams} />
       <Pagination
         ticketCount={ticketCount}
         pageSize={pageSize}

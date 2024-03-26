@@ -1,30 +1,43 @@
 import { Ticket } from '@prisma/client'
-
+import { ISearchParamsProps } from '@/app/page'
 import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
 import StatusBadge from './StatusBadge'
 import PariorityFlames from './PariorityFlames'
 import Link from 'next/link'
+import TableHead from './TableHead'
 
 interface IProps {
   tickets: Ticket[]
+  searchParams: ISearchParamsProps
 }
 
-const DataTable = ({ tickets }: IProps) => {
+const DataTable = ({ tickets, searchParams }: IProps) => {
   return (
     <Table className='mx-auto mt-6  max-w-screen-xl gap-8 rounded-md border px-4 sm:px-6 md:mx-auto lg:px-8'>
       <TableHeader>
         <TableRow>
-          <TableHead>Title</TableHead>
-          <TableHead className='text-center'>Status</TableHead>
-          <TableHead className='text-center'>Priority</TableHead>
-          <TableHead className='pr-20 text-right'>CreatedAt</TableHead>
+          <TableHead searchParams={searchParams} name='Title' orderBy='title' />
+          <TableHead
+            searchParams={searchParams}
+            name='Status'
+            orderBy='status'
+          />
+          <TableHead
+            searchParams={searchParams}
+            name='Priority'
+            orderBy='priority'
+          />
+          <TableHead
+            searchParams={searchParams}
+            name='CreatedAt'
+            orderBy='createdAt'
+          />
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -58,12 +71,6 @@ const DataTable = ({ tickets }: IProps) => {
             ))
           : null}
       </TableBody>
-      {/* <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell>0</TableCell>
-        </TableRow>
-      </TableFooter> */}
     </Table>
   )
 }
