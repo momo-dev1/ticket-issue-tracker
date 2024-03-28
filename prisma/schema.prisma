@@ -40,7 +40,7 @@ model Ticket {
 model User {
   id              String   @id @default(auto()) @map("_id") @db.ObjectId
   name            String
-  username        String
+  username        String   @unique
   password        String
   role            Role     @default(USER)
   assignedTickets Ticket[]
