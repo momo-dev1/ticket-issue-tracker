@@ -1,6 +1,7 @@
 import prisma from '@/lib/prismadb'
 import { UserSchema } from '@/schema'
 import { NextRequest, NextResponse } from 'next/server'
+import bcrypt from 'bcryptjs'
 
 export async function POST(req: NextRequest) {
   const body = await req.json()
@@ -11,6 +12,9 @@ export async function POST(req: NextRequest) {
   const isUsernameTaken = await prisma.user.findUnique({
     where: { username: body.username },
   })
+  const hashedPassword = await bcrypt.hash(body.password, 10)
+  body.password = hashedPassword
+
   if (isUsernameTaken) {
     return NextResponse.json(
       { error: 'Username already taken' },
