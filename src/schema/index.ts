@@ -15,19 +15,20 @@ export const TicketSchema = z.object({
 })
 
 export const UserSchema = z.object({
+  id: z.string().optional(),
   name: z
     .string()
     .min(4, { message: 'Name is required' })
-    .max(15, { message: 'Name is too long' }),
+    .max(55, { message: 'Name is too long' }),
   username: z
     .string()
     .min(6, { message: 'Username is required' })
-    .max(20, { message: 'Username is too long' }),
+    .max(30, { message: 'Username is too long' }),
   password: z
     .string()
     .min(6, { message: 'Password is required' })
     .max(40, { message: 'Password is too long' })
     .optional()
     .or(z.literal('')),
-  role: z.enum(['USER', 'ADMIN']).default('USER'),
+  role: z.enum(['TECH', 'ADMIN', 'USER']).default('USER'),
 })
