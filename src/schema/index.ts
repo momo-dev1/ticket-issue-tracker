@@ -13,3 +13,21 @@ export const TicketSchema = z.object({
   status: z.enum(['OPEN', 'STARTED', 'CLOSED']).optional(),
   priority: z.enum(['LOW', 'MEDIUM', 'HIGH']).optional(),
 })
+
+export const UserSchema = z.object({
+  name: z
+    .string()
+    .min(4, { message: 'Name is required' })
+    .max(15, { message: 'Name is too long' }),
+  username: z
+    .string()
+    .min(6, { message: 'Username is required' })
+    .max(20, { message: 'Username is too long' }),
+  password: z
+    .string()
+    .min(6, { message: 'Password is required' })
+    .max(40, { message: 'Password is too long' })
+    .optional()
+    .or(z.literal('')),
+  role: z.enum(['USER', 'ADMIN']).default('USER'),
+})
