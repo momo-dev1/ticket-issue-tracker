@@ -50,7 +50,7 @@ const TicketForm = ({ user }: IProps) => {
       }
 
       setIsSubmitting(false)
-      router.push('/')
+      router.push('/users')
       router.refresh()
     } catch (e) {
       setError('Something went wrong')
