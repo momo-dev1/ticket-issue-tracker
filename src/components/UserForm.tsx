@@ -59,7 +59,7 @@ const TicketForm = ({ user }: IProps) => {
   }
 
   return (
-    <section className=' mx-3 max-w-screen-xl rounded-md border p-10 md:mx-auto'>
+    <section className='  max-w-screen-xl rounded-md border p-10 md:mx-auto'>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
           <FormField
