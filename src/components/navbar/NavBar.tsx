@@ -30,6 +30,14 @@ const NavBar = () => {
                 Home
               </Link>
             </li>
+            <li>
+              <Link
+                className='font-semibold transition hover:text-teal-500/75 dark:text-white'
+                href='/users'
+              >
+                Users
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -61,11 +69,11 @@ const NavBar = () => {
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'
-              stroke-width='2'
+              strokeWidth='2'
             >
               <path
-                stroke-linecap='round'
-                stroke-linejoin='round'
+                strokeLinecap='round'
+                strokeLinejoin='round'
                 d='M4 6h16M4 12h16M4 18h16'
               />
             </svg>
