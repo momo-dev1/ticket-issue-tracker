@@ -37,7 +37,7 @@ const Ticket = async ({
 
   const tickets = await prisma.ticket.findMany({
     where,
-    orderBy: { [orderBy]: 'desc'  },
+    orderBy: { [orderBy]: 'desc' },
     take: pageSize,
     skip: (page - 1) * pageSize,
   })
