@@ -13,6 +13,7 @@ import StatusBadge from '@/components/StatusBadge'
 import Link from 'next/link'
 import Markdown from 'react-markdown'
 import DeleteButton from '@/components/DeleteButton'
+import AssignTicket from '@/components/AssignTicket'
 
 interface IProps {
   params: {
@@ -22,6 +23,15 @@ interface IProps {
 const TicketDetails = async ({ params: { id } }: IProps) => {
   const ticket = await prisma.ticket.findUnique({
     where: { id },
+  })
+  const users = await prisma.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      username: false,
+      role: false,
+      password: false,
+    },
   })
   if (!ticket) return <div>No Ticket Found</div>
   return (
@@ -62,11 +72,14 @@ const TicketDetails = async ({ params: { id } }: IProps) => {
               hour12: true,
             })}
           </p>
-          <div className='flex w-full items-center justify-center gap-3 md:w-auto'>
-            <Button className='w-full bg-gradient-to-r from-cyan-500 to-teal-500 transition hover:scale-105 hover:opacity-70'>
-              <Link href={`/tickets/edit/${id}`}>Edit ticket</Link>
-            </Button>
-            <DeleteButton ticketId={id} />
+          <div className='flex flex-col gap-2'>
+            <div className='flex w-full items-center justify-center gap-3 md:w-auto'>
+              <Button className='w-full bg-gradient-to-r from-cyan-500 to-teal-500 transition hover:scale-105 hover:opacity-70'>
+                <Link href={`/tickets/edit/${id}`}>Edit ticket</Link>
+              </Button>
+              <DeleteButton ticketId={id} />
+            </div>
+            <AssignTicket ticket={ticket} users={users} />
           </div>
         </div>
       </CardFooter>
