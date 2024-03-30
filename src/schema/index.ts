@@ -14,6 +14,21 @@ export const TicketSchema = z.object({
   priority: z.enum(['LOW', 'MEDIUM', 'HIGH']).optional(),
 })
 
+export const PatchTicketSchema = z.object({
+  id: z.string().optional(),
+  title: z
+    .string()
+    .min(8, { message: 'Title is too short' })
+    .max(60, { message: 'Title is too long' })
+    .optional(),
+  description: z
+    .string()
+    .min(8, { message: 'Title is too short' })
+    .max(255, { message: 'Description is too long' })
+    .optional(),
+  status: z.enum(['OPEN', 'STARTED', 'CLOSED']).optional(),
+  priority: z.enum(['LOW', 'MEDIUM', 'HIGH']).optional(),
+})
 export const UserSchema = z.object({
   id: z.string().optional(),
   name: z
