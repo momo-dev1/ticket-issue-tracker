@@ -1,8 +1,28 @@
-import React from 'react'
 import DarkModeToggle from './DarkModeToggle'
 import Link from 'next/link'
+import { getServerSession } from 'next-auth'
+import options from '@/app/api/auth/[...nextauth]/options'
 
-const NavBar = () => {
+const NavBar = async () => {
+  const session = await getServerSession(options)
+
+  const navLinks = [
+    {
+      name: 'Home',
+      href: '/',
+      isAdmin: false,
+    },
+    {
+      name: 'Tickets',
+      href: '/tickets',
+      isAdmin: false,
+    },
+    {
+      name: 'Users',
+      href: '/users',
+      isAdmin: true,
+    },
+  ]
   return (
     <header className='fixed left-0 top-0 z-50 w-full bg-white shadow-md dark:bg-[#101929]'>
       <div className='mx-auto flex h-20 max-w-screen-xl items-center justify-between gap-8 px-4 sm:px-6 lg:px-8'>
@@ -22,22 +42,20 @@ const NavBar = () => {
             </svg>
           </Link>
           <ul className='hidden items-center gap-4 text-sm md:flex'>
-            <li>
-              <Link
-                className='font-semibold transition hover:text-teal-500/75 dark:text-white'
-                href='/'
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                className='font-semibold transition hover:text-teal-500/75 dark:text-white'
-                href='/users'
-              >
-                Users
-              </Link>
-            </li>
+            {navLinks
+              .filter(
+                (link) => !link.isAdmin || session?.user?.role === 'ADMIN',
+              )
+              .map((link) => (
+                <li key={link.name}>
+                  <Link
+                    className='font-semibold transition hover:text-teal-500/75 dark:text-white'
+                    href={link.href}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </nav>
 
@@ -46,19 +64,21 @@ const NavBar = () => {
             <DarkModeToggle />
           </div>
           <div className='sm:flex sm:gap-4'>
-            <Link
-              className='block rounded-md bg-gradient-to-r from-cyan-500 to-teal-500 px-5 py-2.5 text-sm font-medium text-white transition hover:opacity-70'
-              href='/login'
-            >
-              Login
-            </Link>
-
-            <Link
-              className='hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block'
-              href='/register'
-            >
-              Register
-            </Link>
+            {!session ? (
+              <Link
+                className='block rounded-md bg-gradient-to-r from-cyan-500 to-teal-500 px-5 py-2.5 text-sm font-medium text-white transition hover:opacity-70'
+                href='/api/auth/signin'
+              >
+                Login
+              </Link>
+            ) : (
+              <Link
+                className='hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block'
+                href='/api/auth/signout?callbackUrl=/'
+              >
+                Logout
+              </Link>
+            )}
           </div>
 
           <button className='block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden'>
