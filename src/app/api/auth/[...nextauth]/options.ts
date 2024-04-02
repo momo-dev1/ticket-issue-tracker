@@ -2,6 +2,7 @@ import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
 import prisma from '@/lib/prismadb'
+import { customFetch } from '@/utils/axiosInstance'
 
 const options: NextAuthOptions = {
   providers: [
@@ -9,32 +10,31 @@ const options: NextAuthOptions = {
       id: 'password',
       name: 'Username and Password',
       credentials: {
-        username: {
-          label: 'Username',
-          type: 'text',
-          placeholder: 'Username...',
-        },
+        username: { label: 'Username', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      authorize: async (credentials) => {
+      authorize: async (credentials, req) => {
         const user = await prisma.user.findUnique({
           where: { username: credentials!.username },
         })
-
         if (!user) {
           return null
         }
 
-        const match = await bcrypt.compare(credentials!.password, user.password)
+        // const match = await bcrypt.compare(credentials!.password, user.password)
 
-        if (match) {
-          return user
-        }
+        // if (match) {
+        //   return user
+        // }
 
-        return null
+        return user
       },
     }),
   ],
+  pages: {
+    signIn: '/login',
+  },
+
   callbacks: {
     async jwt({ token, account, user }) {
       if (account) {
