@@ -11,21 +11,20 @@ import {
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation'
 
 type LoginInput = {
   username: string
   password: string
 }
 
-type IProps = {
-  searchParams: { error?: string }
-}
-
-const LogIn = ({ searchParams }: IProps) => {
+const LogIn = () => {
   const [inputs, setInputs] = useState<LoginInput>({
     username: '',
     password: '',
   })
+  const [error, setError] = useState('')
+  const router = useRouter()
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setInputs((prevState) => ({
@@ -36,14 +35,23 @@ const LogIn = ({ searchParams }: IProps) => {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
-    await signIn('credentials', {
-      username: inputs.username,
-      password: inputs.password,
-      redirect: false,
-      callbackUrl: '/',
-    })
+    try {
+      const url = await signIn('credentials', {
+        username: inputs.username,
+        password: inputs.password,
+        redirect: false,
+      })
+      if (url?.ok) {
+        router.replace('/')
+        router.refresh()
+      }
+      if (url?.error) {
+        setError('Username or Password is incorrect')
+      }
+    } catch (error) {
+      setError('Unknown Error Occured.')
+    }
   }
-
   return (
     <Card className='mx-auto max-w-sm'>
       <CardHeader className='space-y-1'>
@@ -80,8 +88,8 @@ const LogIn = ({ searchParams }: IProps) => {
           <Button className='w-full' type='submit'>
             Login
           </Button>
-          {searchParams.error && (
-            <p className='text-center capitalize text-red-600'>Login failed.</p>
+          {error && (
+            <p className='text-center capitalize text-red-600'>{error}</p>
           )}
         </form>
       </CardContent>

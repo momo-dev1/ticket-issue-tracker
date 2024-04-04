@@ -1,14 +1,12 @@
 import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import bcrypt from 'bcryptjs'
 import prisma from '@/lib/prismadb'
-import { customFetch } from '@/utils/axiosInstance'
+import bcrypt from 'bcryptjs'
 
 const options: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      id: 'password',
-      name: 'Username and Password',
+      name: 'credentials',
       credentials: {
         username: { label: 'Username', type: 'text' },
         password: { label: 'Password', type: 'password' },
@@ -21,13 +19,13 @@ const options: NextAuthOptions = {
           return null
         }
 
-        // const match = await bcrypt.compare(credentials!.password, user.password)
+        const match = await bcrypt.compare(credentials!.password, user.password)
 
-        // if (match) {
-        //   return user
-        // }
+        if (match) {
+          return user
+        }
 
-        return user
+        return null
       },
     }),
   ],
@@ -49,6 +47,7 @@ const options: NextAuthOptions = {
       return session
     },
   },
+  secret: process.env.AUTH_SECRET,
 }
 
 export default options
