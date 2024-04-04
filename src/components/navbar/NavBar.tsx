@@ -2,6 +2,7 @@ import DarkModeToggle from './DarkModeToggle'
 import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 import options from '@/app/api/auth/[...nextauth]/options'
+import LogOut from '../LogOut'
 
 const NavBar = async () => {
   const session = await getServerSession(options)
@@ -72,12 +73,7 @@ const NavBar = async () => {
                 Login
               </Link>
             ) : (
-              <Link
-                className='hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block'
-                href='/api/auth/signout?callbackUrl=/'
-              >
-                Logout
-              </Link>
+              <LogOut />
             )}
           </div>
 
