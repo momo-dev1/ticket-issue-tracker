@@ -52,7 +52,7 @@ const TicketForm = ({ ticket }: IProps) => {
       }
 
       setIsSubmitting(false)
-      router.push('/')
+      router.push('/tickets')
       router.refresh()
     } catch (e) {
       setError('Something went wrong')

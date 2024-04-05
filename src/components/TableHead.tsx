@@ -3,7 +3,7 @@ import React from 'react'
 import { TableHead as TableHd } from './ui/table'
 import { ArrowDown } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { ISearchParamsProps } from '@/app/page'
+import { ISearchParamsProps } from '@/app/(dashboard)/tickets/page'
 
 interface IProps {
   searchParams: ISearchParamsProps
@@ -24,7 +24,7 @@ const TableHead = ({ searchParams, name, orderBy }: IProps) => {
     } else {
       newParams.set('orderBy', field)
     }
-    router.push('/?' + newParams.toString())
+    router.push('/tickets/?' + newParams.toString())
   }
 
   return (

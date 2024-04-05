@@ -9,7 +9,7 @@ const NavBar = async () => {
 
   const navLinks = [
     {
-      name: 'Home',
+      name: 'Dashboard',
       href: '/',
       isAdmin: false,
     },

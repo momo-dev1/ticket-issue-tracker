@@ -24,7 +24,7 @@ const DeleteButton = ({ ticketId }: { ticketId: string }) => {
       setIsDeleting(true)
       await customFetch.delete(`/tickets/${ticketId}`)
       setIsDeleting(false)
-      router.push('/')
+      router.push('/tickets')
       router.refresh()
     } catch (error) {
       setError("Unexpected error. Couldn't delete ticket")

@@ -30,7 +30,7 @@ const StatusFilter = () => {
         const params = new URLSearchParams()
         if (status) params.append('status', status)
         const query = params.size ? `?${params.toString()}` : '0'
-        router.push('/' + query)
+        router.push('/tickets/' + query)
       }}
     >
       <SelectTrigger className='w-[180px]'>
