@@ -9,8 +9,9 @@ interface IProps {
   searchParams: ISearchParamsProps
   name: string
   orderBy: string
+  alignLeft?: boolean
 }
-const TableHead = ({ searchParams, name, orderBy }: IProps) => {
+const TableHead = ({ searchParams, name, orderBy, alignLeft }: IProps) => {
   const router = useRouter()
 
   const setOrderBy = (field: string) => {
@@ -28,7 +29,7 @@ const TableHead = ({ searchParams, name, orderBy }: IProps) => {
   }
 
   return (
-    <TableHd>
+    <TableHd className={`${alignLeft ? 'text-left' : 'text-center'}`}>
       <button onClick={() => setOrderBy(orderBy)}>{name}</button>
       {searchParams?.orderBy === `${orderBy}` && (
         <ArrowDown className='inline p-1' />

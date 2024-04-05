@@ -22,7 +22,12 @@ const DataTable = ({ tickets, searchParams }: IProps) => {
     <Table className='mx-auto mt-6  max-w-screen-xl gap-8 rounded-md border px-4 sm:px-6 md:mx-auto lg:px-8'>
       <TableHeader>
         <TableRow>
-          <TableHead searchParams={searchParams} name='Title' orderBy='title' />
+          <TableHead
+            alignLeft
+            searchParams={searchParams}
+            name='Title'
+            orderBy='title'
+          />
           <TableHead
             searchParams={searchParams}
             name='Status'
@@ -57,7 +62,7 @@ const DataTable = ({ tickets, searchParams }: IProps) => {
                     <PariorityFlames pariority={priority} />
                   </div>
                 </TableCell>
-                <TableCell className='pr-10 text-right'>
+                <TableCell className='pr-10 text-center'>
                   {createdAt?.toLocaleDateString('en-US', {
                     year: '2-digit',
                     month: '2-digit',
