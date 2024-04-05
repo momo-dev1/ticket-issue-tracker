@@ -11,7 +11,7 @@ export interface ISearchParamsProps {
   page: string
   orderBy: keyof Ticket
 }
-const Ticket = async ({
+const TickeTable = async ({
   searchParams,
 }: {
   searchParams: ISearchParamsProps
@@ -60,4 +60,4 @@ const Ticket = async ({
   )
 }
 
-export default Ticket
+export default TickeTable
