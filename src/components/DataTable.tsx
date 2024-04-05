@@ -1,5 +1,4 @@
 import { Ticket } from '@prisma/client'
-import { ISearchParamsProps } from '@/app/page'
 import {
   Table,
   TableBody,
@@ -11,6 +10,7 @@ import StatusBadge from './StatusBadge'
 import PariorityFlames from './PariorityFlames'
 import Link from 'next/link'
 import TableHead from './TableHead'
+import { ISearchParamsProps } from '@/app/(dashboard)/tickets/page'
 
 interface IProps {
   tickets: Ticket[]
