@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ticket Issue Tracker App
 
-## Getting Started
+## Short Description
 
-First, run the development server:
+The Ticket Issue Tracker App is a web-based platform designed to streamline the process of managing and resolving ticket-related issues efficiently. Developed using Next.js and Prisma ORM, it provides a user-friendly interface for creating, tracking, and resolving tickets. Leveraging Tailwind CSS for styling and React Hook Form for form management, the app ensures a seamless user experience.
+
+## Problem Solved
+
+In modern organizational workflows, managing and tracking tickets for various issues is crucial for maintaining productivity and addressing customer concerns promptly. The Ticket Issue Tracker App solves this by offering:
+
+- **Efficiency**: Provides a centralized platform for creating, managing, and resolving tickets, streamlining the issue resolution process.
+- **User-Friendly Interface**: Offers an intuitive interface that enables users to easily create and track tickets without extensive training.
+- **Customization**: Utilizes Tailwind CSS for easy customization of UI elements, allowing for a personalized user experience.
+
+## Features
+
+- **Ticket Creation**: Allows users to create tickets specifying the issue type, priority, and description.
+- **Ticket Tracking**: Provides a dashboard for users to track the status of their submitted tickets.
+- **Issue Resolution**: Facilitates communication between users and support staff for resolving issues efficiently.
+- **User Role Management**: Administrators can change user roles, enabling flexible access control within the application.
+- **Filtering**: Users can filter tickets by title, status, priority, or creation date to quickly find relevant information.
+- **Responsive Design**: Built with Next.js and Tailwind CSS, ensuring a responsive and adaptive UI across devices.
+
+
+## Showcase
+
+![Ticket Issue Tracker App Preview](/public/preview.gif)
+
+The Ticket Issue Tracker App revolutionizes the way organizations manage and resolve ticket-related issues. With its user-friendly interface and efficient workflow management, it empowers teams to address issues promptly, enhancing overall productivity and customer satisfaction.
+
+## Run Locally
+
+To experience the Ticket Issue Tracker App firsthand, you can run it locally using the following commands:
+
+### Windows
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+git clone https://github.com/your-username/ticket-issue-tracker.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Linux and macOS
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+sudo git clone https://github.com/your-username/ticket-issue-tracker.git
+```
