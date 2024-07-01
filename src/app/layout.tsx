@@ -26,7 +26,6 @@ const RootLayout: React.FC<RootLayoutProps> = async ({ children }) => {
           enableSystem
           disableTransitionOnChange
         >
-          <NavBar />
           <main className='max-w-screen-xl px-5 pb-10 pt-24 md:mx-auto'>
             {children}
           </main>
